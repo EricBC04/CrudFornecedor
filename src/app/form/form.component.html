@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-8 m-auto">
+    <form [formGroup]="formGroupSupplier">
+
+      <div class="mb-3">
+        <label for="name" class="form-label">Name:</label>
+        <input type="email" formControlName="name" class="form-control" id="name" placeholder="name">
+      </div>
+
+      <select class="form-select" formControlName="category" aria-label="Default select example">
+        <option value="Regional">Regional</option>
+        <option value="Nacional">Nacional</option>
+        <option value="internacional">internacional</option>
+      </select>
+
+      <div class="mb-3">
+        <label for="contact" class="form-label">Contact:</label>
+        <input type="email" formControlName="contact" class="form-control" id="contact" placeholder="(11)9999-9999">
+      </div>
+
+      <div class="form-check" >
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" formControlName="active">
+        <label class="form-check-label" for="flexCheckDefault">
+          Active?
+        </label>
+      </div>
+
+      <div class="mb-3 d-flex justify-content-end">
+        <button class="btn btn-primary" (click)="Save()">Salvar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Activity</th>
+        <th scope="col">Category</th>
+        <th scope="col">contact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let supplier of supplier">
+        <th scope="row">{{supplier.id}}</th>
+        <td>{{supplier.name}}</td>
+        <ng-container *ngIf="supplier.active === true">
+          <td>Yes</td>
+        </ng-container>
+        <ng-container *ngIf="supplier.active === false">
+          <td>No</td>
+        </ng-container>
+        <td>{{supplier.category}}</td>
+        <td>{{supplier.contact}}</td>
+
+        <td class="d-flex justify-content-end">
+          <button class="btn btn-primary m-1" (click)="Alterar(supplier)" >Editar</button>
+          <button class="btn btn-primary m-1" (click)="Exluir(supplier)" >Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+</table>
+
+
